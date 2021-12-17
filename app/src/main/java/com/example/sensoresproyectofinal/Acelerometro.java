@@ -13,7 +13,11 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class Acelerometro extends Activity implements SensorEventListener {
 
@@ -28,6 +32,7 @@ public class Acelerometro extends Activity implements SensorEventListener {
     Intent intent;
     Button regresar;
 
+    ConstraintLayout ln;
 
     private TextView currentX, currentY, currentZ;
 
@@ -39,7 +44,6 @@ public class Acelerometro extends Activity implements SensorEventListener {
         setContentView(R.layout.activity_acelerometro);
         initializeViews();
         regresar=findViewById(R.id.regresar);
-
         regresar.setOnClickListener(new View.OnClickListener()
 
         {
@@ -68,7 +72,7 @@ public class Acelerometro extends Activity implements SensorEventListener {
         currentX = (TextView) findViewById(R.id.CurrentX);
         currentY = (TextView) findViewById(R.id.CurrentY);
         currentZ = (TextView) findViewById(R.id.CurrentZ);
-
+        ln=(ConstraintLayout) findViewById(R.id.cnt);
 
     }
 
@@ -92,7 +96,7 @@ public class Acelerometro extends Activity implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
 
-
+        Toast mensaje = Toast.makeText(getApplicationContext(),"Has movido el celular hacia arriba",Toast.LENGTH_SHORT);
 
         valores_actuales();
 
@@ -104,13 +108,17 @@ public class Acelerometro extends Activity implements SensorEventListener {
 
         if(deltaX >1){
             sonido();
-        }
+            }
 
         if(deltaY >1){
-            getWindow().getDecorView().setBackgroundColor(Color.BLUE);
-
+            ln.setBackgroundColor(Color.BLUE);
+        }else{
+            ln.setBackgroundColor(Color.WHITE);
         }
 
+        if(deltaZ >1){
+            mensaje.show();
+        }
 
 
         if (deltaX < 2)
