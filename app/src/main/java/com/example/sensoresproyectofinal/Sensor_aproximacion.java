@@ -5,15 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
-        import android.hardware.Sensor;
-        import android.hardware.SensorEvent;
-        import android.hardware.SensorEventListener;
-        import android.hardware.SensorManager;
-        import android.os.Bundle;
-        import android.view.View;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-        import android.widget.TextView;
+import android.widget.TextView;
 public class Sensor_aproximacion extends AppCompatActivity implements SensorEventListener {
 
     TextView tv2;
@@ -29,6 +29,7 @@ public class Sensor_aproximacion extends AppCompatActivity implements SensorEven
         setContentView(R.layout.activity_sensor_aproximacion);
         tv2=(TextView)findViewById(R.id.muestra);
         img1= findViewById(R.id.img1);
+        
         sm=(SensorManager)getSystemService(SENSOR_SERVICE);
         sensor = sm.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         sm.registerListener(this, sensor,SensorManager.SENSOR_DELAY_NORMAL);
@@ -57,7 +58,7 @@ public class Sensor_aproximacion extends AppCompatActivity implements SensorEven
         String sensor1 = String.valueOf(sensorEvent.values[0]);
 
         if (Double.parseDouble(sensor1)>0){
-            tv2.setText("FUERA DE RANGO");
+            tv2.setText("NO DECTETADO");
             img1.setImageResource(R.drawable.prox_sensor);
             tv2.setTextColor(Color.RED);
         }else{
