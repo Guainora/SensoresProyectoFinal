@@ -58,7 +58,7 @@ public class Sensor_aproximacion extends AppCompatActivity implements SensorEven
         String sensor1 = String.valueOf(sensorEvent.values[0]);
 
         if (Double.parseDouble(sensor1)>0){
-            tv2.setText("NO DECTETADO");
+            tv2.setText("FUERA DE RANGO");
             img1.setImageResource(R.drawable.prox_sensor);
             tv2.setTextColor(Color.RED);
         }else{
